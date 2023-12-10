@@ -1,38 +1,300 @@
-.App {
-  text-align: center;
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Prevent font size inflation */
+html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Remove default margin in favour of better control in authored CSS */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin-block-end: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+    list-style: none;
 }
 
-.App-link {
-  color: #61dafb;
+/* Set core body defaults */
+body {
+    min-height: 100vh;
+    line-height: 1.5;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+    line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+    text-wrap: balance;
+}
+
+/* Prevent orphan words in paragraphs */
+p {
+    text-wrap: pretty;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+    color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+    font-style: italic;
+    height: auto;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+    min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+    scroll-margin-block: 5ex;
+}
+
+/* Make button as a clickable element and remove borders */
+button {
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* Custom properties */
+:root {
+    --clr-primary: 200 100% 85%;
+    --clr-secondary: 200 100% 10%;
+    --clr-accent: 200 100% 25%;
+
+    --flow-space: 1em;
+
+    --step--2: clamp(0.4775rem, 0.5921rem + -0.1478vw, 0.5625rem);
+    --step--1: clamp(0.7725rem, 0.8037rem + -0.0402vw, 0.7956rem);
+    --step-0: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
+    --step-1: clamp(1.5906rem, 1.4404rem + 0.7511vw, 2.0225rem);
+    --step-2: clamp(2.2494rem, 1.8935rem + 1.7793vw, 3.2725rem);
+    --step-3: clamp(3.1806rem, 2.4452rem + 3.6772vw, 5.295rem);
+    --step-4: clamp(4.4975rem, 3.0821rem + 7.0772vw, 8.5669rem);
+    --step-5: clamp(6.3594rem, 3.75rem + 13.0467vw, 13.8613rem);
+
+    --fs-900: var(--step-5);
+    --fs-800: var(--step-4);
+    --fs-700: var(--step-3);
+    --fs-600: var(--step-2);
+    --fs-500: var(--step-1);
+    --fs-400: var(--step-0);
+    --fs-300: var(--step--1);
+    --fs-200: var(--step--2);
+
+    --ff-heading: "Archivo Black", sans-serif;
+    --ff-body: "Roboto", sans-serif;
+}
+
+/* Utility classes */
+/* Typography */
+.bg-primary {
+    background-color: hsl(var(--clr-primary));
+}
+
+.bg-secondary {
+    background-color: hsl(var(--clr-secondary));
+}
+
+.bg-accent {
+    background-color: hsl(var(--clr-accent));
+}
+
+.text-primary {
+    color: hsl(var(--clr-primary));
+}
+
+.text-secondary {
+    color: hsl(var(--clr-secondary));
+}
+
+.text-accent {
+    color: hsl(var(--clr-accent));
+}
+
+/* Font sizes */
+.fs-900 {
+    font-size: var(--fs-900);
+}
+
+.fs-800 {
+    font-size: var(--fs-800);
+}
+
+.fs-700 {
+    font-size: var(--fs-700);
+}
+
+.fs-600 {
+    font-size: var(--fs-600);
+}
+
+.fs-500 {
+    font-size: var(--fs-500);
+}
+
+.fs-400 {
+    font-size: var(--fs-400);
+}
+
+.fs-300 {
+    font-size: var(--fs-300);
+}
+
+.fs-200 {
+    font-size: var(--fs-200);
+}
+
+.fs-900,
+.fs-800,
+.fs-700,
+.fs-600,
+.fs-500 {
+    line-height: 1.1;
+}
+
+.fs-400,
+.fs-300,
+.fs-200 {
+    line-height: 1.6;
+}
+
+/* FOnt families */
+.ff-heading {
+    font-family: var(--ff-heading);
+}
+
+.ff-body {
+    font-family: var(--ff-body);
+}
+
+/* Layout */
+.wrapper {
+    max-width: 80rem;
+    padding-inline: var(--flow-space);
+    margin-inline: auto;
+}
+
+.flow > * + * {
+    margin-top: var(--flow-space);
+}
+
+/* Components */
+h1 {
+    margin-top: var(--flow-space);
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: var(--flow-space);
+    grid-auto-rows: 10rem auto 1fr auto;
+
+    & .product {
+        --flow-space: 0;
+        grid-row: span 4;
+        display: grid;
+        grid-template-rows: subgrid;
+        gap: var(--flow-space);
+        border: 2px solid hsl(var(--clr-secondary));
+        transition: translate 350ms ease-in-out,
+            background-color 350ms ease-in-out, color 350ms ease-in-out;
+
+        @media (prefers-reduced-motion: reduced-motion) {
+            &:is(:hover, :focus-within) {
+                background-color: hsl(var(--clr-accent));
+                color: hsl(var(--clr-primary));
+
+                & .product__cta {
+                    background-color: hsl(var(--clr-secondary));
+                    outline: 2px solid hsl(var(--clr-secondary));
+
+                    &:is(:hover, :focus-within) {
+                        outline-color: hsl(var(--clr-secondary));
+                    }
+                }
+            }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            &:is(:hover, :focus-within) {
+                translate: 0 -2px;
+            }
+        }
+
+        & .product__image {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: cover;
+        }
+
+        > div {
+            grid-row: span 3;
+            display: grid;
+            grid-template-rows: subgrid;
+            padding: 0 1em 1em;
+
+            > div {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                & .product__cta {
+                    padding: 0.5em 1.5em;
+                    transition: background-color 350ms ease-in-out;
+
+                    &:is(:hover, :focus) {
+                        background-color: hsl(var(--clr-accent) / 0.9);
+                        outline-color: transparent;
+                    }
+                }
+            }
+        }
+    }
 }
